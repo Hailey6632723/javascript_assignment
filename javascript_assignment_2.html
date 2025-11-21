@@ -7,16 +7,20 @@
     <ul id="veg-list"></ul>
     <script>
       //Add your code here
+      
+      // Define arrays for fruits and vegetables
       const fruits = ["Apple", "Banana", "Orange", "Mango", "Strawberry"];
       const vegetables = ["Carrot", "Broccoli", "Spinach", "Tomato", "Cucumber"];
-
-      fruits.forEach(fruit => {
-        document.getElementById("fruit-list").innerHTML += `<li>${fruit}</li>`;
-      });
-
-      vegetables.forEach(veg => {
-        document.getElementById("veg-list").innerHTML += `<li>${veg}</li>`;
-      });
+      
+      // Populate fruits list
+      for (let i = 0; i < fruits.length; i++) {
+        document.getElementById("fruit-list").innerHTML += `<li>${fruits[i]}</li>`;
+      }
+      
+      // Populate vegetables list
+      for (let i = 0; i < vegetables.length; i++) {
+        document.getElementById("veg-list").innerHTML += `<li>${vegetables[i]}</li>`;
+      }
     </script>
   </body>
 </html>
