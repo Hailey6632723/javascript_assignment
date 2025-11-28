@@ -70,18 +70,15 @@
   <label for="monsterSelect">Select Monster:</label>
   <select id="monsterSelect">
     <option value="">-</option>
-    <!-- Default option -->
   </select>
 
   <hr>
 
   <div id="monsterDetails" class="monster-info">
-    <!-- Monster data will be inserted here -->
   </div>
 </div>
 
 <script>
-// Sample JSON data (you mentioned it's in your notebook)
 const monsters = [
   { id: 1, name: "Fire Dragon", hp: 120, exp: 200 },
   { id: 2, name: "Ice Wolf", hp: 75, exp: 45 },
@@ -90,33 +87,31 @@ const monsters = [
   { id: 5, name: "Earth Golem", hp: 200, exp: 150 }
 ];
 
-// Get DOM elements
+
 const select = document.getElementById('monsterSelect');
 const detailsDiv = document.getElementById('monsterDetails');
 
-// Populate dropdown with monster names
+
 monsters.forEach(monster => {
   const option = document.createElement('option');
-  option.value = monster.id;           // Use ID as value for easy lookup
-  option.textContent = monster.name;   // Display name
+  option.value = monster.id;           
+  option.textContent = monster.name;   
   select.appendChild(option);
 });
 
-// Event listener for when user selects a monster
 select.addEventListener('change', function() {
   const selectedId = this.value;
 
-  // If default "-" is selected, clear the details
+
   if (selectedId === "") {
     detailsDiv.innerHTML = "";
     return;
   }
 
-  // Find the selected monster
+
   const monster = monsters.find(m => m.id == selectedId);
 
   if (monster) {
-    // Update the monster details (exact format as in your photo)
     detailsDiv.innerHTML = `
       <div><span class="label">ID</span>     ${monster.id}</div>
       <div><span class="label">Name</span>   ${monster.name}</div>
