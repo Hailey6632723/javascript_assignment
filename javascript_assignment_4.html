@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monster Detail</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    label {
+      font-weight: bold;
+      font-size: 18px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      background-color: white;
+    }
+    select:focus {
+      outline: none;
+      border-color: #4a90e2;
+    }
+    hr {
+      margin: 30px 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+    .monster-info {
+      font-size: 20px;
+      line-height: 2;
+    }
+    .monster-info div {
+      margin-bottom: 10px;
+    }
+    .label {
+      font-weight: bold;
+      display: inline-block;
+      width: 80px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Monster Detail</h1>
+
+  <label for="monsterSelect">Select Monster:</label>
+  <select id="monsterSelect">
+    <option value="">-</option>
+    <!-- Default option -->
+  </select>
+
+  <hr>
+
+  <div id="monsterDetails" class="monster-info">
+    <!-- Monster data will be inserted here -->
+  </div>
+</div>
+
+<script>
+// Sample JSON data (you mentioned it's in your notebook)
+const monsters = [
+  { id: 1, name: "Fire Dragon", hp: 120, exp: 200 },
+  { id: 2, name: "Ice Wolf", hp: 75, exp: 45 },
+  { id: 3, name: "Thunder Bird", hp: 90, exp: 80 },
+  { id: 4, name: "Shadow Ghost", hp: 50, exp: 30 },
+  { id: 5, name: "Earth Golem", hp: 200, exp: 150 }
+];
+
+// Get DOM elements
+const select = document.getElementById('monsterSelect');
+const detailsDiv = document.getElementById('monsterDetails');
+
+// Populate dropdown with monster names
+monsters.forEach(monster => {
+  const option = document.createElement('option');
+  option.value = monster.id;           // Use ID as value for easy lookup
+  option.textContent = monster.name;   // Display name
+  select.appendChild(option);
+});
+
+// Event listener for when user selects a monster
+select.addEventListener('change', function() {
+  const selectedId = this.value;
+
+  // If default "-" is selected, clear the details
+  if (selectedId === "") {
+    detailsDiv.innerHTML = "";
+    return;
+  }
+
+  // Find the selected monster
+  const monster = monsters.find(m => m.id == selectedId);
+
+  if (monster) {
+    // Update the monster details (exact format as in your photo)
+    detailsDiv.innerHTML = `
+      <div><span class="label">ID</span>     ${monster.id}</div>
+      <div><span class="label">Name</span>   ${monster.name}</div>
+      <div><span class="label">HP</span>     ${monster.hp}</div>
+      <div><span class="label">EXP</span>    ${monster.exp}</div>
+    `;
+  }
+});
+</script>
+
+</body>
+</html>
